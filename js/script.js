@@ -2,7 +2,6 @@ let currentProgressBar = 0;
 let currentValueStr
 
 function printProgressBar() {
-
 	if (currentProgressBar<=100) {
 		$("#my-progress-bar").css('width', currentProgressBar + "%");
 		currentValueStr = "Текущее значение: " + currentProgressBar +"%;"
@@ -17,19 +16,16 @@ function printProgressBar() {
 }
 
 function addProgressBar1() {
-
 	currentProgressBar = currentProgressBar + 1;
 	printProgressBar(currentProgressBar);
 }
 
 function addProgressBar3() {
-
 	currentProgressBar = currentProgressBar + 3;
 	printProgressBar(currentProgressBar);
 }
 
 function addProgressBar7() {
-
  	currentProgressBar = currentProgressBar + 7;
 	printProgressBar(currentProgressBar);
 }
@@ -42,7 +38,6 @@ function enableReset() {
 }
 
 function resetProgressBar() {
-
 	currentProgressBar = 0;
 	$("#my-progress-bar").css('width', currentProgressBar + "%");
 	currentValueStr = "Текущее значение: " + currentProgressBar +"%;"
