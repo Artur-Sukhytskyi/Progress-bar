@@ -6,16 +6,25 @@ currentValueStr = "Текущее значение: " + currentProgressBar +"%;"
 $("#currentValue").html(currentValueStr);
 
 function printProgressBar() {
-	if (currentProgressBar<=100) {
+	if (currentProgressBar <= 100) {
 		$("#my-progress-bar").css('width', currentProgressBar + "%");
 		currentValueStr = "Текущее значение: " + currentProgressBar +"%;"
 		$("#currentValue").html(currentValueStr);
+		enablePlus();
 	} else {
 		currentValueStr = "Текущее значение превышает допустимое!";
 		currentProgressBar = 100;
 		$("#my-progress-bar").css('width', currentProgressBar + "%");
 		$("#currentValue").html(currentValueStr);
-		enableReset();
+		disablePlus();
+	}
+	if (currentProgressBar < 0){
+		currentValueStr = "Текущее значение меньше допустимого!";
+		currentProgressBar = 0;
+		$("#currentValue").html(currentValueStr);
+		disableMinus();
+	} else {
+		enableMinus();
 	}
 }
 
@@ -33,12 +42,43 @@ function addProgressBar7() {
  	currentProgressBar = currentProgressBar + 7;
 	printProgressBar(currentProgressBar);
 }
+function removeProgressBar1() {
+	currentProgressBar = currentProgressBar - 1;
+	printProgressBar(currentProgressBar);
+}
 
-function enableReset() {
-	$("#reset").prop("disabled", false);
+function removeProgressBar3() {
+	currentProgressBar = currentProgressBar - 3;
+	printProgressBar(currentProgressBar);
+}
+
+function removeProgressBar7() {
+ 	currentProgressBar = currentProgressBar - 7;
+	printProgressBar(currentProgressBar);
+}
+
+function disablePlus() {
 	$("#plus1").prop("disabled", true);
 	$("#plus3").prop("disabled", true);
 	$("#plus7").prop("disabled", true);
+}
+
+function enablePlus() {
+	$("#plus1").prop("disabled", false);
+	$("#plus3").prop("disabled", false);
+	$("#plus7").prop("disabled", false);
+}
+
+function disableMinus() {
+	$("#minus1").prop("disabled", true);
+	$("#minus3").prop("disabled", true);
+	$("#minus7").prop("disabled", true);
+}
+
+function enableMinus() {
+	$("#minus1").prop("disabled", false);
+	$("#minus3").prop("disabled", false);
+	$("#minus7").prop("disabled", false);
 }
 
 function resetProgressBar() {
@@ -46,17 +86,21 @@ function resetProgressBar() {
 	$("#my-progress-bar").css('width', currentProgressBar + "%");
 	currentValueStr = "Текущее значение: " + currentProgressBar +"%;"
 	$("#currentValue").html(currentValueStr);
-	$("#reset").prop("disabled", true);
+
 	$("#plus1").prop("disabled", false);
 	$("#plus3").prop("disabled", false);
 	$("#plus7").prop("disabled", false);
 }
 
-
 function init(){
 	$("#plus1").click(addProgressBar1);
 	$("#plus3").click(addProgressBar3);
 	$("#plus7").click(addProgressBar7);
+
+	$("#minus1").click(removeProgressBar1);
+	$("#minus3").click(removeProgressBar3);
+	$("#minus7").click(removeProgressBar7);
+
 	$("#reset").click(resetProgressBar);
 }
 
