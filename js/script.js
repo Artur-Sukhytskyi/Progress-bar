@@ -1,6 +1,10 @@
 let currentProgressBar = 0;
 let currentValueStr
 
+$("#my-progress-bar").css('width', currentProgressBar + "%");
+currentValueStr = "Текущее значение: " + currentProgressBar +"%;"
+$("#currentValue").html(currentValueStr);
+
 function printProgressBar() {
 	if (currentProgressBar<=100) {
 		$("#my-progress-bar").css('width', currentProgressBar + "%");
